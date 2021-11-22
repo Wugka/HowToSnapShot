@@ -22,3 +22,27 @@
                 
             return newTableData
         })
+
+//************************************************************************************************************
+
+        props.setTampDatagageheight(prev => (
+             prev.map(el => el.idx == props.dataRemarkModal.idx ?
+                {
+                    ...el,
+                     list: el.list.map(el2 => {
+                         if (el2.key == props.dataRemarkModal.id) {
+                             var timeString = el2.key != null ? moment(el2.key).format('hh:mm') : null
+                             return {
+                                 ...el2,
+                                 remarkid: dataRemark.selected.value,
+                                 remarkdesc: valuedesc,
+                                 dataremarkdesc: valueselected,
+                                 datestring: timeString
+                             }
+                         } else {
+                             return el2
+                         }
+                     })
+                 }
+             : el))
+        )
